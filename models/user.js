@@ -22,18 +22,17 @@ const userSchema = new Schema({
         enum: ["starter", "pro", "business"],
         default: "starter"
     },
-<<<<<<< Updated upstream
+
     avatarURL: {
         type: String,
         required: true,
-=======
+    },
     verify: {
         type: Boolean,
         default: false,
     },
     verificationCode: {
         type: String,
->>>>>>> Stashed changes
     },
     token: {
         type: String,
@@ -56,10 +55,14 @@ const loginSchema = Joi.object({
     subscription: Joi.string().required(),
     token: Joi.string(),
 });
+const emailSchema = Joi.object({
+    email: Joi.string().pattern(emailRegex).required(),
+})
 
 const schemas = {
     registerSchema,
     loginSchema,
+    emailSchema,
 }
 
 const User = model("user", userSchema);
